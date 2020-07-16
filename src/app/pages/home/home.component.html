@@ -7,16 +7,44 @@
         </h1>
         <p class="lead text-white-50">
           Las caracteristicas principales de este sistemas segun las especificacioens brindadas por
-          el equipo de PGS360 son:
+          el equipo de PGS360.
         </p>
+        <hr>
       </div>
       <div class="col-md-20">
+        <h3 class="text-white-50 text-left">La API permitira:</h3>
         <ul class="text-white text-left">
-          <li>API utilizando .Net Core => 3.x</li>
-          <li>Front-End utilizando cualquier tecnologia(Angular 8 en este caso)</li>
-          <li>Base de datos MSSQLS(2019)</li>
-          <li>x</li>
-          <li>y</li>
+          <li>Agregar / eliminar artículos de almacén y establecer su cantidad de stock. Los artículos tienen el siguiente información:</li>
+            <ul>
+              <li>SKU: Identificador del artículo.</li>
+              <li>Descripción.</li>
+              <li>Cantidad en stock.</li>
+            </ul>
+          <li>Cree un pedido seleccionando SKU y cantidad.</li>
+          <li>Cancelar un pedido.</li>
+          <li>Crear un pedido debería reducir la cantidad de SKU seleccionada, cancelar un pedido debería restaurar Cantidad de SKU.</li>
+          <li>Mantenga un registro de todos los pedidos (fecha ingresada, sku, cantidad, estado, quién creó el pedido).</li>
+          <li>Obtenga una lista de todos los SKU disponibles. (cantidad> 0), la lista debe tener paginación.</li>
+          <li>Buscar en artículo específico SKU.</li>
+        </ul>
+        <hr>
+        <h3 class="text-white-50 text-left">Requerimientos de seguridad:</h3>
+        <ul class="text-white text-left">
+          <li>Agregar funcionalidad de inicio de sesión para:</li>
+            <ul>
+              <li>Solo los administradores pueden agregar / eliminar / modificar SKU en el inventario.</li>
+            </ul>
+          <li>Todos pueden crear pedidos y cancelar pedidos.</li>
+          <li>Todos pueden obtener una lista de todos los SKU.</li>
+          <li>Todos pueden usar la función de búsqueda.</li>
+        </ul>
+        <hr>
+        <h3 class="text-white-50 text-left">Requerimientos de interfaz:</h3>
+        <ul class="text-white text-left">
+          <li>Cree una pequeña aplicación front-end que se conecta a la API para mostrar una lista de SKU.</li>
+          <li>La aplicación debe permitir buscar elementos por SKU.</li>
+          <li>Debe ser 100% receptivo.</li>
+          <li>Puedes hacerlo tan visualmente atractivo como puedas.</li>
         </ul>
       </div>
     </div>

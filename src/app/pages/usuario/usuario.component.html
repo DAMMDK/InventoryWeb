@@ -1,0 +1,197 @@
+<div id="page-content">
+    <div class="container text-center">
+        <div class="row justify-content-center">
+            <div class="col-md-20">
+                <h1 class="font-weight-light mt-4 text-white">
+                    <b>• Usuarios •</b>
+                </h1>
+                <hr>
+            </div>
+        </div>
+        <br>
+        <p class="text-xl-left text-white">
+            Puede dar dar clic en los cuadros de abajo para ver información o acciones para los usuarios..
+        </p>
+        <div class="col-md-20 text-black-50 justify" style="margin-bottom: 10%;">
+            <div class="text-left">
+                <p class="text-xl-left text-white">
+                    Tambien puede ver su perfil dando clic a la pestaña <b>"Ver perfil"</b>.
+                </p>
+                <p class="text-xl-left text-white">
+                    * Favor recordar sus credenciales depsues de hacer un cambio de contraseña.
+                </p>
+            </div>
+            <br>
+            <div id="accordion">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
+                                aria-expanded="true" aria-controls="collapseOne">
+                                <b>Ver perfil</b>
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            <div class="col-sm-5">
+                                <form class="text-center text-lg-left">
+
+                                    <label>Nombre:</label>
+                                    <input type="text" class="form-control mb-4" placeholder="Juan Peréz" max="20">
+
+                                    <label>Fecha de nacimiento:</label>
+                                    <input type="text" class="form-control mb-4" placeholder="yyyy-mm-dd">
+
+                                    <label>Email:</label>
+                                    <input type="email" class="form-control mb-4" placeholder="juan@mycompany.com"
+                                        max="50">
+
+                                    <label>Contraseña:</label>
+                                    <input type="password" class="form-control mb-4" placeholder="Max 20 caracteres"
+                                        maxlength="20">
+
+                                    <label>Rol:</label>
+                                    <select class="browser-default custom-select mb-4">
+                                        <option value="" disabled>Seleccione un rol</option>
+                                        <option value="1" selected>Administrador</option>
+                                        <option value="2">Común</option>
+                                    </select>
+                                    <button type="button" class="btn btn-dark">Actualizar usuario</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                                aria-expanded="false" aria-controls="collapseTwo">
+                                <b>Ver usuarios registrados</b>
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div class="card-body">
+                            <table class="table table-light text-left">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">First</th>
+                                        <th scope="col">Last</th>
+                                        <th scope="col">Handle</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+                                        <td>@fat</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Larry</td>
+                                        <td>the Bird</td>
+                                        <td>@twitter</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="row justify-content-center">
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination">
+                                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingThree">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree"
+                                aria-expanded="false" aria-controls="collapseThree">
+                                <b>Crear usuario</b>
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                        <div class="card-body text-left">
+                            <div class="col-sm-5">
+                                <form class="text-center text-lg-left">
+
+                                    <label>Nombre:</label>
+                                    <input type="text" class="form-control mb-4" placeholder="Juan Peréz" max="20">
+
+                                    <label>Fecha de nacimiento:</label>
+                                    <input type="text" class="form-control mb-4" placeholder="yyyy-mm-dd">
+
+                                    <label>Email:</label>
+                                    <input type="email" class="form-control mb-4" placeholder="juan@mycompany.com"
+                                        max="50">
+
+                                    <label>Contraseña:</label>
+                                    <input type="password" class="form-control mb-4" placeholder="Max 20 caracteres"
+                                        maxlength="20">
+
+                                    <label>Rol:</label>
+                                    <select class="browser-default custom-select mb-4">
+                                        <option value="" disabled>Seleccione un rol</option>
+                                        <option value="1" selected>Administrador</option>
+                                        <option value="2">Común</option>
+                                    </select>
+                                    <button type="button" class="btn btn-dark">Crear usuario</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingFour">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour"
+                                aria-expanded="false" aria-controls="collapseFour">
+                                <b>Eliminar/Reactivar usuarios</b>
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                        <div class="card-body text-left">
+                            <div class="col-sm-5">
+                                <form class="text-center text-lg-left">
+                                    <label>Id usuario:</label>
+                                    <input type="text" class="form-control mb-4 col-sm-2 my-1" placeholder="1" max="3">
+
+                                    <label>Estado:</label>
+                                    <select class="browser-default custom-select mb-4">
+                                        <option value="" disabled>Seleccione un estado</option>
+                                        <option value="A" selected>Activo</option>
+                                        <option value="R">Eliminado</option>
+                                    </select>
+                                    <button type="button" class="btn btn-dark">Actualizar usuario</button>
+                                </form>
+                            </div>
+                            <hr>
+                            <p class="text-xl-left text-dark">
+                                Puede verificar el usuario dando clic a la pestaña <b>"Ver usuarios registrados"</b>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

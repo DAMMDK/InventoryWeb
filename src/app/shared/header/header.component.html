@@ -1,44 +1,53 @@
-<!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-  <div class="container">
-    <a class="navbar-brand" href="#">Inventory DM</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-      aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <form class="form-inline ml-auto">
-        <ul class="navbar-nav ml-auto">
-          <li routerLinkActive="active">
-            <a class="nav-link" routerLink="home">Inicio
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li routerLinkActive="active">
-            <a class="nav-link" routerLink="Usuarios">Usuarios
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li routerLinkActive="active">
-            <a class="nav-link" routerLink="Ordenes">Ordenes
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li routerLinkActive="active">
-            <a class="nav-link" routerLink="Reportes">Reportes
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li routerLinkActive="active">
-            <a class="nav-link" routerLink="login">Login
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-        </ul>
-        <div class="md-form my-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Buscar..." aria-label="Search">
-        </div>
-      </form>
+<header id="sticky-header">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <img src="/assets/image/logo.png" width="50" height="30" class="d-inline-block align-top" alt="">
+
+    <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li routerLinkActive="active">
+          <a class="nav-link" routerLink="home">Inicio
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li routerLinkActive="active" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Ordenes
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" routerLink="crear-orden">Crear orden</a>
+            <a class="dropdown-item" routerLink="detalle-orden">Ver orden</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" routerLink="ordenes">Lista de ordenes</a>
+          </div>
+        </li>
+        <li routerLinkActive="active" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Usuario
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" routerLink="usuarios">Usuarios</a>
+            <a class="dropdown-item" routerLink="perfil">Perfil</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" routerLink="#">Cerrar sesión</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="login">Login</a>
+        </li>
+      </ul>
     </div>
-  </div>
-</nav>
+
+    <div class="lg-auto">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand text-white-50">&nbsp;&nbsp;| </a>
+      <a class="navbar-brand">Inventory DM</a>
+    </div>
+
+  </nav>
+</header>
