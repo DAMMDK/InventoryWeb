@@ -18,12 +18,13 @@ const routes: Routes = [
   {path: 'productos', component: ProductosComponent},
   {path: 'crear-orden', component: CrearOrdenComponent},
   {path: 'ordenes', component: OrdenesComponent},
-  {path: 'detalle-orden', component: VerOrdenComponent},
+  {path: 'detalle-orden/:id', component: VerOrdenComponent},
   {path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {useHash: true})
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -35,4 +35,9 @@ ordenes: Ordenes[] = [];
 
     });
   }
+
+  getOrder(id: number){
+    console.log(id);
+    return this.http.get(`https://localhost:44308/api/orders/find/${ id }`);
+  }
 }

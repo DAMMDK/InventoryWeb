@@ -9,13 +9,13 @@ import { OrdenesService } from '../../services/ordenes.service';
 
 export class OrdenesComponent implements OnInit {
 
-  constructor( public ordenesService: OrdenesService) { }
-  ngOnInit(): void {
-  }
-
   key: string = 'DateStart';
   reverse: boolean = false;
   p: number = 1;
+
+  constructor( public ordenesService: OrdenesService) { }
+  ngOnInit(): void { 
+  }
 
   // sorting
   sort(key){

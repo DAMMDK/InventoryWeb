@@ -1,20 +1,20 @@
-<div id="page-content" style="margin-bottom: 7%;">
+<div id="page-content" class="page-content login">
     <div class="container-fluid text-center">
         <div class="row justify-content-center">
             <div class="col-md-20">
-                <h1 class="font-weight-light mt-4 text-white">
-                    <b>• Lista de ordenes •</b>
+                <h1 class="font-weight-light mt-4 text-grey">
+                    <b>Lista de ordenes</b>
                 </h1>
                 <hr>
             </div>
         </div>
         <br>
-        <p class="text-xl-left text-white">
+        <p class="lead text-left text-grey">
             La lista de ordenes mostrada en la tabla no estan filtradas por estado.
         </p>
         <br>
 
-        <div class="text-white" *ngIf="ordenesService.cargando">
+        <div class="text-grey" *ngIf="ordenesService.cargando">
             <app-load></app-load>
         </div>
 
@@ -31,15 +31,16 @@
                     <tr>
                         <th scope="scope">#</th>
                         <th>Id Transacción</th>
-                        <th>Producto</th>
-                        <th>Usuario</th>
-                        <th>Cantidad</th>
-                        <th>Precio</th>
-                        <th (click)="sort('DateStart')">Fecha creación
+                        <th>Nombre usuario</th>
+                        <th>Email</th>
+                        <th>Precio total</th>
+                        <th>Cantidad total</th>
+                        <th (click)="sort('DateStart')"
+                        data-toggle="popover" data-placement="top" data-content="Haga clic aca para ordenar por fecha ascendente o descendente"
+                        >Fecha creación
                             <span class="glyphicon sort-icon" *ngIf="key =='name'"
                                 [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}">Haga clic para ordenar</span>
                         </th>
-                        <th>Descripcion</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -48,18 +49,14 @@
                         *ngFor="let ordenes of ordenesService.ordenes | orderBy: key: reverse | paginate: {itemsPerPage: 5, currentPage: p}; let i = index">
                         <td>{{ i }}</td>
                         <td>{{ordenes.transactionID}}</td>
-                        <td>{{ordenes.productID}}</td>
-                        <td>{{ordenes.userId}}</td>
-                        <td>{{ordenes.quantity}}</td>
-                        <td>{{ordenes.price}}</td>
-                        <td>{{ordenes.generateDate | date: 'dd/MM/yyyy H:mm'}}</td>
-                        <td *ngIf="ordenes.description; else thenNA" class="Orderdescripcion">{{ordenes.description}}</td>
-                        <ng-template #thenNA>
-                            <td class="Orderdescripcion">N/A</td>
-                        </ng-template>
+                        <td>{{ordenes.usuario}}</td>
+                        <td>{{ordenes.email}}</td>
+                        <td>${{ordenes.totalPrice}}</td>
+                        <td>{{ordenes.totalProducts}}</td>
+                        <td>{{ordenes.datePedido | date: 'dd/MM/yyyy'}}</td>
                         <td>
                             <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-secondary btn-sm">
+                                <label class="btn btn-secondary btn-sm" [routerLink]="['/detalle-orden', ordenes.transactionID]">
                                     <input type="radio" name="options" id="option1" autocomplete="off"> Detalle
                                 </label>
                                 <label class="btn btn-success btn-sm">
