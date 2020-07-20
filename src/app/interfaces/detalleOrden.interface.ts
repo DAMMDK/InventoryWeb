@@ -13,4 +13,4 @@ export interface DetalleOrdenes {
   totalPrice: any;
   totalProducts: number;
   datePedido: string;
-  }
+}

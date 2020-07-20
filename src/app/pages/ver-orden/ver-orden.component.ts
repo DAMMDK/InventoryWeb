@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { OrdenesService } from '../../services/ordenes.service';
 import { ActivatedRoute } from '@angular/router';
+import { OrdenesService } from '../../services/ordenes.service';
 import { DetalleOrdenes } from '../../interfaces/detalleOrden.interface';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Component({
   selector: 'app-ver-orden',
@@ -15,10 +16,12 @@ export class VerOrdenComponent implements OnInit {
   key: string = 'DateStart';
   reverse: boolean = false;
   p: number = 1;
+  cantidad: number = 0;
 
   cargando: true;
   orden: DetalleOrdenes;
   id: number;
+  mensaje: string = 'Esta seguro que desea realizar esta acción?';
 
   ngOnInit(): void {
 
@@ -27,14 +30,25 @@ export class VerOrdenComponent implements OnInit {
       .subscribe( (orden: DetalleOrdenes) => {
         this.id = parametros['id'];
         this.orden = orden;
-        console.log(orden);
       });
     });
   }
 
-  // sorting
-  sort(key){
-    this.key = key;
-    this.reverse = !this.reverse;
+  alerta(){
+    confirm(this.mensaje);
   }
+
+  Actualizar(){
+    confirm(this.mensaje);
+  }
+
+  Eliminar(){
+    confirm(this.mensaje);
+  }
+
+  cant(cantidad: number){
+    this.cantidad = cantidad;
+    console.log(this.cantidad);
+  }
+
 }

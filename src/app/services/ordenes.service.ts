@@ -25,8 +25,6 @@ ordenes: Ordenes[] = [];
       .subscribe( (resp: Ordenes[]) => {
         this.ordenes = resp;
 
-        console.log(resp);
-
         setTimeout(() => {
           this.cargando = false;
         }, 500);
@@ -37,7 +35,7 @@ ordenes: Ordenes[] = [];
   }
 
   getOrder(id: number){
-    console.log(id);
     return this.http.get(`https://localhost:44308/api/orders/find/${ id }`);
   }
+
 }
