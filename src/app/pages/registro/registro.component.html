@@ -1,0 +1,32 @@
+<div class="login">
+    <div class="login d-flex align-items-center py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mx-auto">
+                    <h3 class="login-heading mb-4 text-grey text-center">Bienvenido a Inventory DM</h3>
+                    <form class="text-center text-lg-left" method="POST">
+                        <!--Nombre-->
+                        <input type="text" class="form-control mb-4" placeholder="Nombre (1) y apellido (1)" max="20" required>
+                        <!--Fecha Nacimiento-->
+                        <input type="date" class="form-control mb-4" placeholder="Fecha de nacimiento" required>
+                        <!--Email-->
+                        <input type="email" class="form-control mb-4" placeholder="Email" max="50" required>
+                        <!--Contraseña-->
+                        <input type="password" class="form-control mb-4" placeholder="Contraseña" maxlength="20" required>
+                        <!--Confirmar contraseña-->
+                        <input type="password" class="form-control mb-4" placeholder="Repita la contraseña" maxlength="20" required>
+                        <!--Rol-->
+                        <select class="browser-default custom-select mb-4" disabled>
+                            <option value="" disabled>Seleccione un rol</option>
+                            <option value="1">Administrador</option>
+                            <option value="2" selected>Común</option>
+                        </select>
+                        <!--Registrar-->
+                        <button type="button" class="btn btn-success" (clic)="registro()">Crear usuario</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

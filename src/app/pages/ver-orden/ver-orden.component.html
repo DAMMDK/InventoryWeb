@@ -22,78 +22,79 @@
     <div *ngIf="orden" class="col-md-20 bg-light">
       <!--Inicia detalle de la orden-->
       <div *ngFor="let detalle of orden let i = index" id="accordion">
-        <div class="card text-white bg-secondary mb-3">
-          <div class="card-header" id="i">
+        <div class="card text-white mb-1">
+          <div class="card-header bg-secondary" id="i">
             <h5 class="mb-0">
-              <label class="text-white" data-toggle="collapse" [attr.data-target]="'#collapse'+i" aria-expanded="true"
+              <button class="btn btn-secondary text-white" data-toggle="collapse" [attr.data-target]="'#collapse'+i" aria-expanded="true"
                 [attr.aria-controls]="'collapse'+i">
                 Producto {{ i + 1 }}, de la orden #{{ detalle.transactionID }}
-              </label>
+              </button>
             </h5>
           </div>
 
           <div [attr.id]="'collapse'+i" class="collapse" aria-labelledby="i" data-parent="#accordion">
-            <div class="card-body">
-              <form action="">
+            <div class="card-body text-grey">
+              <form action="" [formGroup]="">
                 <!--1 linea-->
                 <div class="form-row text-left">
                   <div class="form-group col-md-1">
-                    <label for="inputTransaction"># transacción: </label>
-                    <input type="text" class="form-control" id="inputTransaction" value="{{ detalle.transactionID }}"
+                    <label [attr.for]="'inputTransaction'+i"># transacción: </label>
+                    <input type="text" class="form-control" [attr.id]="'inputTransaction'+i" value="{{ detalle.transactionID }}"
                       disabled>
                   </div>
                   <div class="form-group col-md-4">
-                    <label for="inputName">Nombre de usuario: </label>
-                    <input type="text" class="form-control" id="inputName" value="{{ detalle.usuario }}" disabled>
+                    <label [attr.for]="'inputName'+i">Nombre de usuario: </label>
+                    <input type="text" class="form-control" [attr.id]="'inputName'+i" value="{{ detalle.usuario }}" disabled>
                   </div>
                   <div class="form-group col-md-1"></div>
                   <div class="form-group col-md-3">
-                    <label for="inputEmail">Email: </label>
-                    <input type="text" class="form-control" id="inputEmail" value="{{ detalle.email }}" disabled>
+                    <label [attr.for]="'inputEmail'+i">Email: </label>
+                    <input type="text" class="form-control" [attr.id]="'inputEmail'+i" value="{{ detalle.email }}" disabled>
                   </div>
                 </div>
                 <!--2 linea-->
                 <div class="form-row text-left">
                   <div class="form-group col-md-1">
-                    <label for="inputProducto"># producto: </label>
-                    <input type="text" class="form-control" id="inputProducto" value="{{ detalle.productID }}" disabled>
+                    <label [attr.for]="'inputProducto'+i"># producto: </label>
+                    <input type="text" class="form-control" [attr.id]="'inputProducto'+i" value="{{ detalle.productID }}" disabled>
                   </div>
                   <div class="form-group col-md-2">
-                    <label for="inputSku">SKU: </label>
-                    <input type="text" class="form-control" id="inputSku" value="{{ detalle.sku }}" disabled>
+                    <label [attr.for]="'inputSku'+i">SKU: </label>
+                    <input type="text" class="form-control" [attr.id]="'inputSku'+i" value="{{ detalle.sku }}" disabled>
                   </div>
                   <div class="form-group col-md-3">
-                    <label for="inputNameP">Nombre producto: </label>
-                    <input type="text" class="form-control" id="inputNameP" value="{{ detalle.producto }}" disabled>
+                    <label [attr.for]="'inputNameP'+i">Nombre producto: </label>
+                    <input type="text" class="form-control" [attr.id]="'inputNameP'+i" value="{{ detalle.producto }}" disabled>
                   </div>
                   <div class="form-group col-md-6">
-                    <label for="inputDescripcionP">Descriptión del producto: </label>
-                    <textarea class="form-control" id="inputDescripcionP" rows="2" value="{{ detalle.descripcion }}"
+                    <label [attr.for]="'inputDescripcionP'+i">Descriptión del producto: </label>
+                    <textarea class="form-control" [attr.id]="'inputDescripcionP'+i" rows="2" value="{{ detalle.descripcion }}"
                       disabled></textarea>
                   </div>
                 </div>
                 <!--3 linea-->
                 <div class="form-row text-left">
                   <div class="form-group col-md-1">
-                    <label for="inputPrecioU">Precio unitario: </label>
-                    <input type="text" class="form-control" id="inputPrecioU" value="{{ detalle.price }}" disabled>
+                    <label [attr.for]="'inputPrecioU'+i">Precio unitario: </label>
+                    <input type="text" class="form-control" [attr.id]="'inputPrecioU'+i" value="{{ detalle.price }}" disabled>
                   </div>
                   <div class="form-group col-md-2">
-                    <label for="inputPrecioT">Precio total: </label>
-                    <input type="text" class="form-control" id="inputPrecioT" value="{{ detalle.price * detalle.totalProducts }}" disabled>
+                    <label [attr.for]="'inputPrecioT'+i">Precio total: </label>
+                    <input type="text" class="form-control" [attr.id]="'inputPrecioT'+i" value="{{ detalle.price * detalle.totalProducts }}" disabled>
+                    <label [attr.for]="'inputPrecioT'+i"><small><i>Precio mostrado en dolares ($)</i></small></label>
                   </div>
                   <div class="form-group col-md-1">
-                    <label for="inputCantidad">Cantidad: </label>
-                    <input type="number" class="form-control" id="inputCantidad" value="{{ detalle.totalProducts }}" (change)="cant($event.target.value)">
+                    <label [attr.for]="'inputCantidad'+i">Cantidad: </label>
+                    <input type="number" class="form-control" [attr.id]="'inputCantidad'+i" value="{{ detalle.totalProducts }}" onchange="_priceQuantity(this.id)">
                   </div>
                   <div class="form-group col-md-2">
-                    <label for="inputFechaPedido">Fecha del pedido: </label>
-                    <input type="text" class="form-control" id="inputFechaPedido"
+                    <label [attr.for]="'inputFechaPedido'+i">Fecha del pedido: </label>
+                    <input type="text" class="form-control" [attr.id]="'inputFechaPedido'+i"
                       value="{{ detalle.datePedido  | date: 'dd/MM/yyyy hh:mm a'}}" disabled>
                   </div>
                   <div class="form-group col-md-6">
-                    <label for="inputFechaPedido">Detalle de la orden: </label>
-                    <textarea class="form-control" id="inputFechaPedido" rows="2" maxlength="250"
+                    <label [attr.for]="'inputFechaPedido'+i">Detalle de la orden: </label>
+                    <textarea class="form-control" [attr.id]="'inputFechaPedido'+i" rows="2" maxlength="250"
                       value="{{ detalle.detalle }}">
                   </textarea>
                   </div>

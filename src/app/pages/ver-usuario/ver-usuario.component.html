@@ -1,0 +1,125 @@
+<div id="page-content">
+    <div class="container text-center">
+        <div class="row justify-content-center">
+            <div class="col-md-20">
+                <h1 class="font-weight-light mt-4 text-grey">
+                    <b>Usuarios</b>
+                </h1>
+                <hr>
+            </div>
+        </div>
+        <br>
+        <p class="lead text-left text-grey">
+            Para realizar acciones sobre los usuarios, debera realizarse desde el panel de administración.
+        </p>
+        <div class="col-md-20 text-black-50 justify" style="margin-bottom: 10%;">
+            <div class="text-left">
+                <p class="lead text-left text-grey">
+                    <small>
+                        Tambien puede ver su perfil dando clic a la pestaña <b>"Ver perfil"</b> en el panel de administración.
+                    </small>
+                </p>
+            </div>
+            <br>
+
+            <div *ngFor="let detalle of usuario">
+                <div class="text-grey" *ngIf="!detalle">
+                    <app-load></app-load>
+                </div>
+
+                <div *ngIf="detalle">
+
+                    <div id="accordion">
+                        <div class="card mb-1">
+                            <div class="card-header bg-secondary" id="headingOne">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-secondary" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        <b>Perfil de usuario: {{ detalle.name }}</b>
+                                    </button>
+                                </h5>
+                            </div>
+
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                data-parent="#accordion">
+                                <div class="card-body">
+                                    <div class="col-sm-12">
+
+                                        <form class="text-center text-lg-left" action="" [formGroup]="">
+
+                                            <div class="form-row text-left">
+                                                <div class="form-group col-md-4">
+                                                    <label>Nombre:</label>
+                                                    <input type="text" class="form-control mb-4"
+                                                        placeholder="Escriba su nombre" value="{{detalle.name}}"
+                                                        max="20" disabled>
+                                                </div>
+                                                <div class="form-group col-md-1">
+                                                    <label>Edad:</label>
+                                                    <input type="text" class="form-control mb-4" value="{{detalle.age}}"
+                                                        disabled>
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    <label>Fecha de nacimiento:</label>
+                                                    <ng-container
+                                                        *ngIf="{ fecha: (detalle.birtday | date: 'yyyy-MM-dd')}; let birtday">
+                                                        <input type="date" class="form-control mb-4"
+                                                            value="{{ birtday.fecha }}" disabled>
+                                                    </ng-container>
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label>Email:</label>
+                                                    <input type="email" class="form-control mb-4"
+                                                        placeholder="Escriba su email" value="{{detalle.email}}"
+                                                        max="50" disabled>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-row text-left">
+                                                <div class="form-group col-md-3">
+                                                    <label>Fecha creación:</label>
+                                                    <input type="text" class="form-control mb-4"
+                                                        value="{{detalle.dateStart | date: 'dd/MM/yyyy h:mm a'}}"
+                                                        disabled>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <label>Rol:</label>
+                                                    <ng-container *ngIf="detalle.idRole == 1; else Next1">
+                                                        <input type="text" class="form-control mb-4" max="50"
+                                                            value="Administrador" disabled>
+                                                    </ng-container>
+
+                                                    <ng-template #Next1>
+                                                        <ng-container *ngIf="usuario.idRole == 2; else Next2">
+                                                            <input type="text" class="form-control mb-4" max="50"
+                                                                value="Común" disabled>
+                                                        </ng-container>
+                                                    </ng-template>
+
+                                                    <ng-template #Next2>
+                                                        <input type="text" class="form-control mb-4" max="50"
+                                                            value="Otro" disabled>
+                                                    </ng-template>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-secondary active" routerLink="/usuarios">
+                          <input type="checkbox" checked autocomplete="off">
+                          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-left" fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                              d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                          </svg>
+                          Volver al listado
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

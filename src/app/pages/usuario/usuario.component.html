@@ -2,32 +2,36 @@
     <div class="container text-center">
         <div class="row justify-content-center">
             <div class="col-md-20">
-                <h1 class="font-weight-light mt-4 text-white">
-                    <b>• Usuarios •</b>
+                <h1 class="font-weight-light mt-4 text-grey">
+                    <b>Usuarios</b>
                 </h1>
                 <hr>
             </div>
         </div>
         <br>
-        <p class="text-xl-left text-white">
-            Puede dar dar clic en los cuadros de abajo para ver información o acciones para los usuarios..
+        <p class="lead text-left text-grey">
+            Puede dar dar clic en los cuadros de abajo para ver información o acciones para los usuarios.
         </p>
         <div class="col-md-20 text-black-50 justify" style="margin-bottom: 10%;">
             <div class="text-left">
-                <p class="text-xl-left text-white">
-                    Tambien puede ver su perfil dando clic a la pestaña <b>"Ver perfil"</b>.
+                <p class="lead text-left text-grey">
+                    <small>
+                        Tambien puede ver su perfil dando clic a la pestaña <b>"Ver perfil"</b>.
+                    </small>
                 </p>
-                <p class="text-xl-left text-white">
-                    * Favor recordar sus credenciales depsues de hacer un cambio de contraseña.
+                <p class="lead text-left text-grey">
+                    <small>
+                        * Favor recordar sus credenciales despues de hacer un cambio de contraseña.
+                    </small>
                 </p>
             </div>
             <br>
             <div id="accordion">
-                <div class="card">
-                    <div class="card-header" id="headingOne">
+                <div class="card mb-1">
+                    <div class="card-header bg-secondary" id="headingOne">
                         <h5 class="mb-0">
-                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
-                                aria-expanded="true" aria-controls="collapseOne">
+                            <button class="btn btn-secondary" data-toggle="collapse" data-target="#collapseOne"
+                                aria-expanded="false" aria-controls="collapseOne">
                                 <b>Ver perfil</b>
                             </button>
                         </h5>
@@ -35,153 +39,269 @@
 
                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                         <div class="card-body">
-                            <div class="col-sm-5">
-                                <form class="text-center text-lg-left">
+<!--
+                            <div class="text-grey" *ngIf="usuarioService.cargando">
+                                <app-load></app-load>
+                            </div>
+-->
+                            <div class="col-sm-12">
+<!--
+                                
+                                <form class="text-center text-lg-left" action="" [formGroup]="form"
+                                    (ngSubmit)="actUsr()" *ngFor="let usuario of usuario">
+                                    <div class="form-row text-left">
+                                        <div class="form-group col-md-4">
+                                            <label>Nombre:</label>
+                                            <input type="text" class="form-control mb-4" placeholder="Escriba su nombre"
+                                            formControlName="name" name="{{usuario.name}}" max="20" required>
+                                        </div>
+                                        <div class="form-group col-md-1">
+                                            <label>Edad:</label>
+                                            <input type="text" class="form-control mb-4" value="{{usuario.age}}"
+                                                disabled>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label>Fecha de nacimiento:</label>
+                                            <ng-container
+                                                *ngIf="{ fecha: (usuario.birtday | date: 'yyyy-MM-dd')}; let birtday">
+                                                <input type="date" class="form-control mb-4"
+                                                    value="{{ birtday.fecha }}" required>
+                                            </ng-container>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Email:</label>
+                                            <input type="email" class="form-control mb-4" placeholder="Escriba su email"
+                                                value="{{usuario.email}}" max="50" required>
+                                        </div>
+                                    </div>
 
-                                    <label>Nombre:</label>
-                                    <input type="text" class="form-control mb-4" placeholder="Juan Peréz" max="20">
+                                    <div class="form-row text-left">
+                                        <div class="form-group col-md-3">
+                                            <label>Fecha creación:</label>
+                                            <input type="text" class="form-control mb-4"
+                                                value="{{usuario.dateStart | date: 'dd/MM/yyyy h:mm a'}}" disabled>
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label>Rol:</label>
+                                            <ng-container *ngIf="usuario.idRole == 1; else Next1">
+                                                <input type="text" class="form-control mb-4" max="50"
+                                                    value="Administrador" disabled>
+                                            </ng-container>
 
-                                    <label>Fecha de nacimiento:</label>
-                                    <input type="text" class="form-control mb-4" placeholder="yyyy-mm-dd">
+                                            <ng-template #Next1>
+                                                <ng-container *ngIf="usuario.idRole == 2; else Next2">
+                                                    <input type="text" class="form-control mb-4" max="50" value="Común"
+                                                        disabled>
+                                                </ng-container>
+                                            </ng-template>
 
-                                    <label>Email:</label>
-                                    <input type="email" class="form-control mb-4" placeholder="juan@mycompany.com"
-                                        max="50">
+                                            <ng-template #Next2>
+                                                <input type="text" class="form-control mb-4" max="50" value="Otro"
+                                                    disabled>
+                                            </ng-template>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Actualizar contraseña:</label>
+                                            <input type="password" class="form-control mb-4"
+                                                placeholder="Digite su nueva contraseña" maxlength="15">
+                                        </div>
+                                    </div>
 
-                                    <label>Contraseña:</label>
-                                    <input type="password" class="form-control mb-4" placeholder="Max 20 caracteres"
-                                        maxlength="20">
-
-                                    <label>Rol:</label>
-                                    <select class="browser-default custom-select mb-4">
-                                        <option value="" disabled>Seleccione un rol</option>
-                                        <option value="1" selected>Administrador</option>
-                                        <option value="2">Común</option>
-                                    </select>
-                                    <button type="button" class="btn btn-dark">Actualizar usuario</button>
+                                    <button type="submit" [disabled]="!form.valid" class="btn btn-success"
+                                        (click)="alerta(); actUsr()">Actualizar usuario</button>
                                 </form>
+                            -->
+                            <form class="text-center text-lg-left" action="" [formGroup]="form">
+                                <input type="text" formControlName="name">
+                            </form>
+
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-header" id="headingTwo">
+                <!--
+                <div class="card mb-1">
+                    <div class="card-header bg-secondary" id="headingTwo">
                         <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
-                                aria-expanded="false" aria-controls="collapseTwo">
+                            <button class="btn btn-secondary collapsed" data-toggle="collapse"
+                                data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                 <b>Ver usuarios registrados</b>
                             </button>
                         </h5>
                     </div>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                         <div class="card-body">
-                            <table class="table table-light text-left">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">First</th>
-                                        <th scope="col">Last</th>
-                                        <th scope="col">Handle</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <div class="row justify-content-center">
-                                <nav aria-label="Page navigation">
-                                    <ul class="pagination">
-                                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                    </ul>
+
+                            <div class="text-grey" *ngIf="usuarioService.cargando">
+                                <app-load></app-load>
+                            </div>
+
+                            <div *ngIf="!usuarioService.cargando" class="col-md-20 bg-light">
+
+                                <table class="table table-striped table-light table-bordered small text-grey">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="scope">#</th>
+                                            <th>Nombre usuario</th>
+                                            <th>F. nacimiento</th>
+                                            <th>Edad</th>
+                                            <th>Rol</th>
+                                            <th>Email</th>
+                                            <th (click)="sort('DateStart')" data-toggle="tooltip" data-placement="top"
+                                                title="Haga clic aca para ordenar por fecha ascendente o descendente">
+                                                <button type="button" class="btn btn-ml text-light">
+                                                    <svg width="1em" height="1em" viewBox="0 0 16 16"
+                                                        class="bi bi-filter-left" fill="currentColor"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd"
+                                                            d="M2 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z" />
+                                                    </svg>
+                                                    <b> F. creación</b>
+                                                </button>
+                                                <span class="glyphicon sort-icon" *ngIf="key =='name'"
+                                                    [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                            </th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr
+                                            *ngFor="let usuarios of usuarioService.usuarios | orderBy: key: reverse | paginate: {itemsPerPage: 5, currentPage: p}; let i = index">
+                                            <td>{{ i + 1 }}</td>
+                                            <td>{{usuarios.name}}</td>
+                                            <td>{{usuarios.birtday | date: 'dd/MM/yyyy'}}</td>
+                                            <td>{{usuarios.age}}</td>
+
+                                            <ng-container *ngIf="usuarios.idRole == 1; else Next1">
+                                                <td>Admin</td>
+                                            </ng-container>
+
+                                            <ng-template #Next1>
+                                                <ng-container *ngIf="usuarios.idRole == 2; else Next2">
+                                                    <td>Común</td>
+                                                </ng-container>
+                                            </ng-template>
+
+                                            <ng-template #Next2>
+                                                <td>Otro</td>
+                                            </ng-template>
+
+                                            <td>{{usuarios.email}}</td>
+                                            <td>{{usuarios.dateStart | date: 'dd/MM/yyyy'}}</td>
+                                            <td>
+                                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                                    <label class="btn btn-warning btn-sm"
+                                                        [routerLink]="['/usuario', usuarios.userId]">
+                                                        <input type="radio" name="options" id="option1"
+                                                            autocomplete="off"> Detalle
+                                                    </label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <nav class="navbar bg-light justify-content-center">
+                                    <pagination-controls (pageChange)="p = $event" previousLabel="Anterior"
+                                        nextLabel="Siguiente"></pagination-controls>
                                 </nav>
                             </div>
+
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-header" id="headingThree">
+                <div class="card mb-1">
+                    <div class="card-header bg-secondary" id="headingThree">
                         <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree"
-                                aria-expanded="false" aria-controls="collapseThree">
+                            <button class="btn btn-secondary collapsed" data-toggle="collapse"
+                                data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                 <b>Crear usuario</b>
                             </button>
                         </h5>
                     </div>
                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                         <div class="card-body text-left">
-                            <div class="col-sm-5">
-                                <form class="text-center text-lg-left">
+                            <div class="col-sm-12">
+                                <form class="text-center text-lg-left" action="" [formGroup]="form">
 
-                                    <label>Nombre:</label>
-                                    <input type="text" class="form-control mb-4" placeholder="Juan Peréz" max="20">
+                                    <div class="form-row text-left">
+                                        <div class="form-group col-md-4">
+                                            <label>Nombre:</label>
+                                            <input type="text" class="form-control mb-4" placeholder="Escriba su nombre"
+                                                value="" max="20" required>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label>Fecha de nacimiento:</label>
+                                            <input type="date" class="form-control mb-4" value="" required>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Email:</label>
+                                            <input type="email" class="form-control mb-4" placeholder="Escriba su email"
+                                                value="" max="50" required>
+                                        </div>
+                                    </div>
 
-                                    <label>Fecha de nacimiento:</label>
-                                    <input type="text" class="form-control mb-4" placeholder="yyyy-mm-dd">
+                                    <div class="form-row text-left">
+                                        <div class="form-group col-md-4">
+                                            <label>Contraseña:</label>
+                                            <input type="password" class="form-control mb-4" value="" maxlength="16"
+                                                required>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Repetir contraseña:</label>
+                                            <input type="password" class="form-control mb-4" value="" maxlength="16"
+                                                required>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label>Rol:</label>
+                                            <select class="browser-default custom-select mb-4">
+                                                <option value="" disabled>Seleccione un rol</option>
+                                                <option value="1" selected>Administrador</option>
+                                                <option value="2">Común</option>
+                                            </select>
+                                        </div>
+                                    </div>
 
-                                    <label>Email:</label>
-                                    <input type="email" class="form-control mb-4" placeholder="juan@mycompany.com"
-                                        max="50">
+                                    <button type="button" class="btn btn-success">Crear usuario</button>
 
-                                    <label>Contraseña:</label>
-                                    <input type="password" class="form-control mb-4" placeholder="Max 20 caracteres"
-                                        maxlength="20">
-
-                                    <label>Rol:</label>
-                                    <select class="browser-default custom-select mb-4">
-                                        <option value="" disabled>Seleccione un rol</option>
-                                        <option value="1" selected>Administrador</option>
-                                        <option value="2">Común</option>
-                                    </select>
-                                    <button type="button" class="btn btn-dark">Crear usuario</button>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-header" id="headingFour">
+                <div class="card mb-1">
+                    <div class="card-header bg-secondary" id="headingFour">
                         <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour"
-                                aria-expanded="false" aria-controls="collapseFour">
+                            <button class="btn btn-secondary collapsed" data-toggle="collapse"
+                                data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                                 <b>Eliminar/Reactivar usuarios</b>
                             </button>
                         </h5>
                     </div>
                     <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
                         <div class="card-body text-left">
-                            <div class="col-sm-5">
-                                <form class="text-center text-lg-left">
-                                    <label>Id usuario:</label>
-                                    <input type="text" class="form-control mb-4 col-sm-2 my-1" placeholder="1" max="3">
+                            <div class="col-sm-12">
+                                <form class="text-center text-lg-left" action="" [formGroup]="form">
 
-                                    <label>Estado:</label>
-                                    <select class="browser-default custom-select mb-4">
-                                        <option value="" disabled>Seleccione un estado</option>
-                                        <option value="A" selected>Activo</option>
-                                        <option value="R">Eliminado</option>
-                                    </select>
-                                    <button type="button" class="btn btn-dark">Actualizar usuario</button>
+                                    <div class="form-row text-left">
+                                        <div class="form-group col-md-1">
+                                            <label>Id usuario:</label>
+                                            <input type="text" class="form-control" placeholder="0" required>
+                                        </div>
+                                        <div class="form-group col-md-5">
+                                            <label>Email</label>
+                                            <input type="email" class="form-control"
+                                                placeholder="Email a Eliminar/Activar" max="50" required>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label>Estado:</label>
+                                            <select class="browser-default custom-select">
+                                                <option value="" disabled>Seleccione un estado</option>
+                                                <option value="A" selected>Activo</option>
+                                                <option value="R">Eliminado</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-warning">Actualizar usuario</button>
                                 </form>
                             </div>
                             <hr>
@@ -191,6 +311,7 @@
                         </div>
                     </div>
                 </div>
+                -->
             </div>
         </div>
     </div>

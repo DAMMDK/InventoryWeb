@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,7 +18,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoadComponent } from './shared/load/load.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter'; // importando el módulo
 import { Ng2OrderModule } from 'ng2-order-pipe'; // importando el módulo
-import { NgxPaginationModule } from 'ngx-pagination' ; // <- importa el módulo
+import { NgxPaginationModule } from 'ngx-pagination';
+import { RegistroComponent } from './pages/registro/registro.component';
+import { VerUsuarioComponent } from './pages/ver-usuario/ver-usuario.component' ; // <- importa el módulo
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -34,11 +36,13 @@ import { NgxPaginationModule } from 'ngx-pagination' ; // <- importa el módulo
     UsuarioComponent,
     PerfilComponent,
     CrearOrdenComponent,
-    LoadComponent
+    LoadComponent,
+    RegistroComponent,
+    VerUsuarioComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
     Ng2SearchPipeModule,  // incluidas las importaciones

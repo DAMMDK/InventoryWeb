@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { OrdenesService } from '../../services/ordenes.service';
 import { DetalleOrdenes } from '../../interfaces/detalleOrden.interface';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Component({
   selector: 'app-ver-orden',
@@ -21,7 +20,7 @@ export class VerOrdenComponent implements OnInit {
   cargando: true;
   orden: DetalleOrdenes;
   id: number;
-  mensaje: string = 'Esta seguro que desea realizar esta acción?';
+  mensaje: string = '¿Esta seguro que desea realizar esta acción?';
 
   ngOnInit(): void {
 
