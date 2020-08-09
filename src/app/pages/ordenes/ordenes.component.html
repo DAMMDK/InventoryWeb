@@ -14,12 +14,12 @@
         </p>
         <br>
 
-        <div class="text-grey" *ngIf="ordenesService.cargando">
+        <div class="text-grey" *ngIf="cargando">
             <app-load></app-load>
         </div>
 
 
-        <div *ngIf="!ordenesService.cargando" class="col-md-20 bg-light">
+        <div *ngIf="!cargando" class="col-md-20 bg-light">
 
             <!--
             <nav class = "navbar" >
@@ -46,7 +46,7 @@
                 </thead>
                 <tbody>
                     <tr
-                        *ngFor="let ordenes of ordenesService.ordenes | orderBy: key: reverse | paginate: {itemsPerPage: 5, currentPage: p}; let i = index">
+                        *ngFor="let ordenes of ordenesComponent | orderBy: key: reverse | paginate: {itemsPerPage: 5, currentPage: p}; let i = index">
                         <td>{{ i }}</td>
                         <td>{{ordenes.transactionID}}</td>
                         <td>{{ordenes.usuario}}</td>

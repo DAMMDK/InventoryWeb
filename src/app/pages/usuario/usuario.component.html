@@ -39,57 +39,61 @@
 
                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                         <div class="card-body">
-<!--
-                            <div class="text-grey" *ngIf="usuarioService.cargando">
+
+                            <div class="text-grey" *ngIf="cargando">
                                 <app-load></app-load>
                             </div>
--->
-                            <div class="col-sm-12">
-<!--
-                                
+
+                            <div class="col-sm-12" *ngIf="!cargando">
                                 <form class="text-center text-lg-left" action="" [formGroup]="form"
-                                    (ngSubmit)="actUsr()" *ngFor="let usuario of usuario">
+                                    (ngSubmit)="putPerfil()">
                                     <div class="form-row text-left">
                                         <div class="form-group col-md-4">
                                             <label>Nombre:</label>
                                             <input type="text" class="form-control mb-4" placeholder="Escriba su nombre"
-                                            formControlName="name" name="{{usuario.name}}" max="20" required>
+                                                formControlName="name" max="20" required>
                                         </div>
                                         <div class="form-group col-md-1">
                                             <label>Edad:</label>
-                                            <input type="text" class="form-control mb-4" value="{{usuario.age}}"
-                                                disabled>
+                                            <input type="text" class="form-control mb-4" formControlName="age" disabled>
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label>Fecha de nacimiento:</label>
                                             <ng-container
-                                                *ngIf="{ fecha: (usuario.birtday | date: 'yyyy-MM-dd')}; let birtday">
-                                                <input type="date" class="form-control mb-4"
-                                                    value="{{ birtday.fecha }}" required>
+                                                *ngIf="{ fecha: (form.value.birtday | date: 'yyyy-MM-dd')}; let birtday">
+                                                <input type="date" class="form-control mb-4" formControlName="birtday">
                                             </ng-container>
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label>Email:</label>
-                                            <input type="email" class="form-control mb-4" placeholder="Escriba su email"
-                                                value="{{usuario.email}}" max="50" required>
+                                            <input type="email" class="form-control mb-4" formControlName="email"
+                                                placeholder="Escriba su email" max="50" required>
                                         </div>
                                     </div>
 
                                     <div class="form-row text-left">
                                         <div class="form-group col-md-3">
                                             <label>Fecha creación:</label>
-                                            <input type="text" class="form-control mb-4"
-                                                value="{{usuario.dateStart | date: 'dd/MM/yyyy h:mm a'}}" disabled>
+                                            <ng-container
+                                                *ngIf="{ fecha: (form.value.dateStart | date: 'dd/MM/yyyy h:mm a')}; let fechaCreacion">
+                                                <input type="text" class="form-control mb-4" formControlName="dateStart"
+                                                    hidden>
+                                                <input type="text" class="form-control mb-4"
+                                                    value="{{ form.value.dateStart | date: 'dd/MM/yyyy h:mm a'}}"
+                                                    disabled>
+                                            </ng-container>
                                         </div>
                                         <div class="form-group col-md-2">
                                             <label>Rol:</label>
-                                            <ng-container *ngIf="usuario.idRole == 1; else Next1">
+                                            <input type="text" formControlName="idRole" hidden>
+
+                                            <ng-container *ngIf="form.value.idRole == 1; else Next1">
                                                 <input type="text" class="form-control mb-4" max="50"
                                                     value="Administrador" disabled>
                                             </ng-container>
 
                                             <ng-template #Next1>
-                                                <ng-container *ngIf="usuario.idRole == 2; else Next2">
+                                                <ng-container *ngIf="form.value.idRole == 2; else Next2">
                                                     <input type="text" class="form-control mb-4" max="50" value="Común"
                                                         disabled>
                                                 </ng-container>
@@ -99,27 +103,24 @@
                                                 <input type="text" class="form-control mb-4" max="50" value="Otro"
                                                     disabled>
                                             </ng-template>
+
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label>Actualizar contraseña:</label>
-                                            <input type="password" class="form-control mb-4"
-                                                placeholder="Digite su nueva contraseña" maxlength="15">
+                                            <input type="password" class="form-control mb-4" formControlName="pwd"
+                                                placeholder="Digite su nueva contraseña" maxlength="15"
+                                                data-toggle="tooltip" data-placement="top"
+                                                title="La contraseña debe contener: Minimo 8 y maximo 15 caracteres, letras minusculas, letras mayúsculas, números, y caracteres especiales.">
                                         </div>
                                     </div>
 
                                     <button type="submit" [disabled]="!form.valid" class="btn btn-success"
-                                        (click)="alerta(); actUsr()">Actualizar usuario</button>
+                                        (click)="alerta()">Actualizar usuario</button>
                                 </form>
-                            -->
-                            <form class="text-center text-lg-left" action="" [formGroup]="form">
-                                <input type="text" formControlName="name">
-                            </form>
-
                             </div>
                         </div>
                     </div>
                 </div>
-                <!--
                 <div class="card mb-1">
                     <div class="card-header bg-secondary" id="headingTwo">
                         <h5 class="mb-0">
@@ -132,11 +133,11 @@
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                         <div class="card-body">
 
-                            <div class="text-grey" *ngIf="usuarioService.cargando">
+                            <div class="text-grey" *ngIf="cargando">
                                 <app-load></app-load>
                             </div>
 
-                            <div *ngIf="!usuarioService.cargando" class="col-md-20 bg-light">
+                            <div *ngIf="!cargando" class="col-md-20 bg-light">
 
                                 <table class="table table-striped table-light table-bordered small text-grey">
                                     <thead class="thead-dark">
@@ -166,7 +167,7 @@
                                     </thead>
                                     <tbody>
                                         <tr
-                                            *ngFor="let usuarios of usuarioService.usuarios | orderBy: key: reverse | paginate: {itemsPerPage: 5, currentPage: p}; let i = index">
+                                            *ngFor="let usuarios of users | orderBy: key: reverse | paginate: {itemsPerPage: 5, currentPage: p}; let i = index">
                                             <td>{{ i + 1 }}</td>
                                             <td>{{usuarios.name}}</td>
                                             <td>{{usuarios.birtday | date: 'dd/MM/yyyy'}}</td>
@@ -221,39 +222,39 @@
                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                         <div class="card-body text-left">
                             <div class="col-sm-12">
-                                <form class="text-center text-lg-left" action="" [formGroup]="form">
+                                <form class="text-center text-lg-left" action="" [formGroup]="form2"
+                                    (ngSubmit)="postUsuario()">
 
                                     <div class="form-row text-left">
                                         <div class="form-group col-md-4">
                                             <label>Nombre:</label>
                                             <input type="text" class="form-control mb-4" placeholder="Escriba su nombre"
-                                                value="" max="20" required>
+                                                formControlName="name">
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label>Fecha de nacimiento:</label>
-                                            <input type="date" class="form-control mb-4" value="" required>
+                                            <input type="date" class="form-control mb-4" formControlName="birtday">
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label>Email:</label>
                                             <input type="email" class="form-control mb-4" placeholder="Escriba su email"
-                                                value="" max="50" required>
+                                                formControlName="email">
                                         </div>
                                     </div>
 
                                     <div class="form-row text-left">
                                         <div class="form-group col-md-4">
                                             <label>Contraseña:</label>
-                                            <input type="password" class="form-control mb-4" value="" maxlength="16"
-                                                required>
+                                            <input type="password" class="form-control mb-4" formControlName="pwd">
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label>Repetir contraseña:</label>
                                             <input type="password" class="form-control mb-4" value="" maxlength="16"
-                                                required>
+                                                disabled>
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label>Rol:</label>
-                                            <select class="browser-default custom-select mb-4">
+                                            <select class="browser-default custom-select mb-4" formControlName="idRole">
                                                 <option value="" disabled>Seleccione un rol</option>
                                                 <option value="1" selected>Administrador</option>
                                                 <option value="2">Común</option>
@@ -261,7 +262,8 @@
                                         </div>
                                     </div>
 
-                                    <button type="button" class="btn btn-success">Crear usuario</button>
+                                    <button type="submit" [disabled]="!form2.valid" class="btn btn-success" 
+                                        (clic)="alerta()">Crear usuario</button>
 
                                 </form>
                             </div>
@@ -280,28 +282,29 @@
                     <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
                         <div class="card-body text-left">
                             <div class="col-sm-12">
-                                <form class="text-center text-lg-left" action="" [formGroup]="form">
+                                <form class="text-center text-lg-left" action="" [formGroup]="form3"
+                                (ngSubmit)="deleteUsr()">
 
                                     <div class="form-row text-left">
                                         <div class="form-group col-md-1">
                                             <label>Id usuario:</label>
-                                            <input type="text" class="form-control" placeholder="0" required>
+                                            <input type="text" class="form-control" placeholder="0" formControlName="userId" required>
                                         </div>
                                         <div class="form-group col-md-5">
                                             <label>Email</label>
                                             <input type="email" class="form-control"
-                                                placeholder="Email a Eliminar/Activar" max="50" required>
+                                                placeholder="Email a Eliminar/Activar" formControlName="email">
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label>Estado:</label>
-                                            <select class="browser-default custom-select">
+                                            <select class="browser-default custom-select" formControlName="status">
                                                 <option value="" disabled>Seleccione un estado</option>
                                                 <option value="A" selected>Activo</option>
                                                 <option value="R">Eliminado</option>
                                             </select>
                                         </div>
                                     </div>
-                                    <button type="button" class="btn btn-warning">Actualizar usuario</button>
+                                    <button type="submit" class="btn btn-warning" [disabled]="!form3.valid" (clic)="alerta()">Actualizar usuario</button>
                                 </form>
                             </div>
                             <hr>
@@ -311,7 +314,6 @@
                         </div>
                     </div>
                 </div>
-                -->
             </div>
         </div>
     </div>

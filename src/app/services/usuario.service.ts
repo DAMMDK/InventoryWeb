@@ -20,15 +20,14 @@ export class UsuarioService {
   }
 
   public cargarUsuarios() {
-
-    this.http.get('https://localhost:44308/api/security/findusr')
-      .subscribe((resp: Usuarios[]) => {
-        this.usuarios = resp;
-
-        setTimeout(() => {
-          this.cargando = false;
-        }, 500);
-      });
+    return this.http.get('https://localhost:44308/api/security/findusr')
+      .pipe(
+        map(
+          usuarios => {
+            return usuarios;
+          }
+        )
+      );
   }
 
   public perfilUsuario() {
@@ -37,17 +36,6 @@ export class UsuarioService {
         map(
           usuario => {
             return usuario;
-          }
-        )
-      );
-  }
-
-  public findAll() {
-    return this.http.get<any>(`https://localhost:44308/api/security/findusr/${this.id}`)
-      .pipe(
-        map(
-          result => {
-            return result;
           }
         )
       );
